@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TikTok OAuth Authorization — Video_Tiktok</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/script.js"></script>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <a href="/" class="logo-group">
+        <div class="logo-icon">V</div>
+        <span>Video_Tiktok</span>
+      </a>
+      <nav>
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
+          <span>☀️</span><span>Light Mode</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="doc-container" style="text-align: center; max-width: 600px; padding: 3rem 2rem;">
+      <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+      <h1>TikTok Authorization Received</h1>
+      <p style="margin: 1.5rem 0; color: var(--text-secondary);">
+        Your TikTok account connection response has been processed. If you were connecting from the local Video_Tiktok application, you can now return to the app.
+      </p>
+      <div id="auth-code-box" style="display: none; background: var(--bg-primary); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color); word-break: break-all; margin: 1.5rem 0; font-family: monospace; font-size: 0.85rem;"></div>
+      <a href="/" class="btn btn-primary">Return to Homepage</a>
+    </div>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    const state = params.get('state');
+    if (code) {
+      const box = document.getElementById('auth-code-box');
+      box.style.display = 'block';
+      box.innerText = `Authorization Code: ${code.substring(0, 16)}... (State: ${state || 'N/A'})`;
+    }
+  </script>
+
+  <footer>
+    <p>&copy; 2026 Video_Tiktok. All rights reserved.</p>
+  </footer>
+</body>
+</html>
