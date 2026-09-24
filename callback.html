@@ -41,7 +41,11 @@
     if (code) {
       const box = document.getElementById('auth-code-box');
       box.style.display = 'block';
-      box.innerText = `Authorization Code: ${code.substring(0, 16)}... (State: ${state || 'N/A'})`;
+      box.innerText = `Authorization Code: ${code.substring(0, 16)}... (State: ${state || 'N/A'}) - Redirecting to local app...`;
+      // Auto forward to local ReelForge app
+      setTimeout(() => {
+        window.location.href = 'http://127.0.0.1:8787/api/oauth/tiktok/callback' + window.location.search;
+      }, 1000);
     }
   </script>
 
